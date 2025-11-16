@@ -1,0 +1,544 @@
+/* Importar fuentes de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap');
+
+/* Variables CSS para colores */
+:root {
+    --primary-color: #258dd3;
+    --secondary-color: #bb3720;
+    --accent-color: #0772ff;
+    --text-color: #6e6c6c;
+    --light-text-color: #00d9ff;
+    --bg-light: #f8f8f8;
+    --bg-dark: #eee;
+    --white: #fff;
+    --dark-blue: #1197d4f6;
+}
+
+/* Estilos Generales */
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--white);
+    scroll-behavior: smooth;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+h1 {
+    font-size: 2.8em;
+    color: var(--white);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+h2 {
+    font-size: 2.2em;
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+    padding-bottom: 10px;
+    color: var(--dark-blue);
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 5px;
+}
+
+h3 {
+    font-size: 1.6em;
+    color: var(--secondary-color);
+    margin-top: 25px;
+}
+
+p {
+    margin-bottom: 1em;
+}
+
+a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--primary-color);
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--dark-blue);
+    color: var(--white);
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.btn:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+}
+
+.section-padding {
+    padding: 60px 0;
+}
+
+.bg-light {
+    background-color: var(--bg-light);
+}
+
+/* Header */
+header {
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 40px 0 20px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+header::before { /* Overlay oscuro para que el texto resalte */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+header > .container {
+    position: relative;
+    z-index: 2;
+}
+
+header p {
+    font-size: 1.2em;
+    margin-top: -10px;
+    margin-bottom: 20px;
+    font-weight: 300;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Para responsive */
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: var(--white);
+    font-weight: 700;
+    font-size: 1.1em;
+    padding: 10px 0;
+    display: block;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+    border-bottom: 3px solid transparent;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    color: var(--accent-color);
+    border-bottom: 3px solid var(--accent-color);
+}
+
+/* Hero Section */
+#hero {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/hero-bg.jpg') no-repeat center center/cover;
+    color: var(--white);
+    text-align: center;
+    padding: 100px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60vh; /* Ajusta la altura del hero */
+    box-shadow: inset 0 -5px 10px rgba(0,0,0,0.1);
+}
+
+.hero-content h2 {
+    font-size: 3em;
+    margin-bottom: 15px;
+    color: var(--white);
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+}
+
+.hero-content p {
+    font-size: 1.5em;
+    font-weight: 300;
+    max-width: 800px;
+    margin: 0 auto 30px;
+}
+
+/* Secciones de Contenido General (Nosotros, etc.) */
+.flex-container {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 50px;
+    flex-wrap: wrap; /* Para responsive */
+}
+
+.flex-container:last-of-type {
+    margin-bottom: 0;
+}
+
+.flex-container.reverse {
+    flex-direction: row-reverse;
+}
+
+.content-text, .content-image {
+    flex: 1;
+    min-width: 300px; /* Evita que se encojan demasiado */
+}
+
+.content-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+}
+
+/* Artículo de Educación Inclusiva */
+.article-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    text-align: justify;
+}
+
+.article-img {
+    max-width: 80%;
+    border-radius: 10px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+    margin-bottom: 20px;
+}
+
+.article-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.article-content ul li {
+    background-color: var(--white);
+    margin-bottom: 10px;
+    padding: 15px;
+    border-left: 5px solid var(--primary-color);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    font-size: 1.1em;
+    display: flex;
+    align-items: flex-start;
+}
+
+.article-content ul li::before {
+    content: '✅'; /* Un ícono de check */
+    margin-right: 10px;
+    font-size: 1.2em;
+    color: var(--primary-color);
+    flex-shrink: 0;
+    line-height: 1; /* Para alinear con el texto */
+}
+
+
+/* Valores */
+.valores-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    text-align: center;
+}
+
+.valor-item {
+    background-color: var(--bg-light);
+    padding: 30px 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.valor-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.valor-item img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15)); /* Sombra para el icono */
+}
+
+.valor-item h3 {
+    color: var(--primary-color);
+    font-size: 1.4em;
+    margin-top: 10px;
+}
+
+/* Admisiones */
+.admisiones-content {
+    background-color: var(--white);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.admisiones-content ol {
+    list-style-position: inside;
+    text-align: left;
+    max-width: 600px;
+    margin: 20px auto 40px;
+    padding-left: 0;
+    font-size: 1.1em;
+}
+
+.admisiones-content ol li {
+    margin-bottom: 10px;
+}
+
+.tarifa-card {
+    background-color: var(--bg-dark);
+    padding: 25px;
+    border-radius: 8px;
+    margin: 20px auto;
+    max-width: 350px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    border: 1px solid var(--primary-color);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tarifa-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+.tarifa-card h4 {
+    color: var(--secondary-color);
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.tarifa-card .precio {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5em;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 15px 0;
+}
+
+.nota-tarifas {
+    font-style: italic;
+    color: var(--light-text-color);
+    margin-top: 30px;
+    font-size: 0.95em;
+}
+
+/* Contacto */
+.contacto-flex {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.contacto-info, .contacto-mapa {
+    flex: 1;
+    min-width: 300px;
+    background-color: var(--bg-light);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.contacto-info ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.contacto-info ul li {
+    margin-bottom: 15px;
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+}
+
+.contacto-info ul li strong {
+    margin-right: 10px;
+    color: var(--dark-blue);
+}
+
+.contacto-info ul li::before {
+    content: ''; /* Usaremos un ícono real o font-awesome si lo importamos */
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-right: 10px;
+    filter: invert(30%) sepia(80%) saturate(600%) hue-rotate(100deg) brightness(90%); /* Color del ícono */
+}
+
+/* Iconos para contacto (simulados con background-image) */
+.contacto-info ul li:nth-child(1)::before { background-image: url('images/location.png'); } /* Dirección */
+.contacto-info ul li:nth-child(2)::before { background-image: url('images/phone.png'); }    /* Teléfono */
+.contacto-info ul li:nth-child(3)::before { background-image: url('images/email.png'); }    /* Email */
+.contacto-info ul li:nth-child(4)::before { background-image: url('images/clock.png'); }    /* Horario */
+
+
+.social-links {
+    margin-top: 30px;
+    display: flex;
+    gap: 15px;
+    justify-content: center; /* Centrar íconos */
+}
+
+.social-links img {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.2s ease, filter 0.2s ease;
+    filter: grayscale(50%);
+}
+
+.social-links img:hover {
+    transform: scale(1.1);
+    filter: grayscale(0); /* Quitar el filtro gris al pasar el mouse */
+}
+
+.contacto-mapa iframe {
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer */
+footer {
+    background-color: var(--dark-blue);
+    color: var(--white);
+    text-align: center;
+    padding: 25px 0;
+    margin-top: 50px;
+    font-size: 0.9em;
+}
+
+/* Media Queries para Responsive Design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.2em;
+    }
+
+    h2 {
+        font-size: 1.8em;
+    }
+
+    .hero-content h2 {
+        font-size: 2.5em;
+    }
+
+    .hero-content p {
+        font-size: 1.2em;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    nav ul li {
+        margin: 0;
+    }
+
+    .flex-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .flex-container.reverse {
+        flex-direction: column; /* También en columna para móviles */
+    }
+
+    .content-image {
+        order: -1; /* Mueve la imagen arriba en vista móvil */
+    }
+
+    .article-img {
+        max-width: 100%;
+    }
+
+    .valores-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .tarifa-card {
+        max-width: 100%;
+    }
+
+    .contacto-flex {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contacto-info, .contacto-mapa {
+        min-width: unset;
+        width: 100%;
+        box-sizing: border-box; /* Asegura que el padding no desborde */
+    }
+
+    .admisiones-content ol {
+        text-align: center;
+        padding-left: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8em;
+    }
+    h2 {
+        font-size: 1.6em;
+    }
+    .hero-content h2 {
+        font-size: 2em;
+    }
+    .hero-content p {
+        font-size: 1em;
+    }
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+    .section-padding {
+        padding: 40px 0;
+    }
+}
