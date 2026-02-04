@@ -12,7 +12,7 @@
 
     <header> 
         <div class="container">
-            <h1>Unidad Educativa "Pablo Neruda"</h1>
+            <h1>UNIDAD EDUCATIVA "PABLO NERUDA"</h1>
             <p>Donde cada niño florece a su propio ritmo</p>
             <nav>
                 <ul>
@@ -95,7 +95,7 @@
                 <p>Valoramos la individualidad, las diferencias y los derechos de cada persona.</p>
             </div>
             <div class="valor-item">
-                <img src="images/inclusion.jpg" alt="Icono de inclusión / Manos de diferentes colores unidas">
+                <img src="images/inclusion.jhmpg" alt="Icono de inclusión / Manos de diferentes colores unidas">
                 <h3>Inclusión</h3>
                 <p>Aseguramos que todos tengan las mismas oportunidades de participar y aprender.</p>
             </div>
@@ -173,6 +173,136 @@
         </div>
     </section>
 
+   <section id="inscripcion" class="section-padding bg-light">
+    <div class="container">
+        <h2 class="section-title">Formulario de Pre-Inscripción Online</h2>
+        <p style="text-align: center; margin-bottom: 40px;">Por favor, complete todos los campos requeridos para iniciar el proceso de ingreso.</p>
+
+        <form action="#" method="POST" class="form-inscripcion">
+            
+            <fieldset>
+                <legend>1. Datos del (la) Estudiante</legend>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="est_nombre">Nombres y Apellidos *</label>
+                        <input type="text" id="est_nombre" name="est_nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="est_fecha_nac">Fecha de Nacimiento *</label>
+                        <input type="date" id="est_fecha_nac" name="est_fecha_nac" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="est_lugar_nac">Lugar de Nacimiento *</label>
+                        <input type="text" id="est_lugar_nac" name="est_lugar_nac" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="est_edad">Edad *</label>
+                        <input type="number" id="est_edad" name="est_edad" min="3" max="18" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="est_id">Pasaporte o Cédula de Identidad *</label>
+                        <input type="text" id="est_id" name="est_id" required>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>2. Datos de los Padres (Opcional)</legend>
+                <div class="flex-container-form">
+                    <div class="form-column">
+                        <h3>2.1 Datos de la Madre</h3>
+                        <div class="form-group"><input type="text" placeholder="Nombre y Apellido" name="madre_nombre"></div>
+                        <div class="form-group"><label>Fecha Nac.</label><input type="date" name="madre_fecha_nac"></div>
+                        <div class="form-group"><input type="text" placeholder="Cédula de Identidad" name="madre_cedula"></div>
+                        <div class="form-group"><input type="text" placeholder="Nacionalidad" name="madre_nacionalidad"></div>
+                        <div class="form-group"><input type="text" placeholder="Ocupación" name="madre_ocupacion"></div>
+                        <div class="form-group"><input type="text" placeholder="Lugar/Dirección de Trabajo" name="madre_trabajo"></div>
+                        <div class="form-group"><input type="tel" placeholder="Teléfono" name="madre_telefono"></div>
+                    </div>
+                    <div class="form-column">
+                        <h3>2.2 Datos del Padre</h3>
+                        <div class="form-group"><input type="text" placeholder="Nombre y Apellido" name="padre_nombre"></div>
+                        <div class="form-group"><label>Fecha Nac.</label><input type="date" name="padre_fecha_nac"></div>
+                        <div class="form-group"><input type="text" placeholder="Cédula de Identidad" name="padre_cedula"></div>
+                        <div class="form-group"><input type="text" placeholder="Nacionalidad" name="padre_nacionalidad"></div>
+                        <div class="form-group"><input type="text" placeholder="Ocupación" name="padre_ocupacion"></div>
+                        <div class="form-group"><input type="text" placeholder="Lugar/Dirección de Trabajo" name="padre_trabajo"></div>
+                        <div class="form-group"><input type="tel" placeholder="Teléfono" name="padre_telefono"></div>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>2.3 Datos del (la) Representante (Obligatorio)</legend>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Nombre y Apellido *</label>
+                        <input type="text" name="rep_nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Fecha de Nacimiento *</label>
+                        <input type="date" name="rep_fecha_nac" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Cédula de Identidad *</label>
+                        <input type="text" name="rep_cedula" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Nacionalidad *</label>
+                        <input type="text" name="rep_nacionalidad" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Vínculo Familiar *</label>
+                        <select name="rep_vinculo" required>
+                            <option value="">Seleccione...</option>
+                            <option value="madre">Madre</option>
+                            <option value="padre">Padre</option>
+                            <option value="abuelo">Abuelo/a</option>
+                            <option value="tio">Tío/a</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Ocupación *</label>
+                        <input type="text" name="rep_ocupacion" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Lugar y Dirección de Trabajo *</label>
+                        <input type="text" name="rep_trabajo" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Teléfono *</label>
+                        <input type="tel" name="rep_tel" required>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Acta de Compromiso</legend>
+                <div class="normas-box">
+                    <ul>
+                        <li><strong>1.</strong> No se permite el uso de celulares, tablet, labtop, equipos electrónicos, ni ningún otro objeto de valor dentro de la institución por parte de su representado (a), ya que la institución no se hace responsable por la perdida de los mismos.</li>
+                        <li><strong>2.</strong> Los estudiante deben portar el uniforme correctamente pantalon azul marino, chemisse o camisa blanca, distintivo de la institución zapatos negros, respectiva correa.</li>
+                        <li><strong>3.</strong> Utilizar un vocabulario acorde a la moral y buenas costumbres. Utilizar cortes y peinados normales, que no sean extravagantes, ni que contengan gel.</li>
+                        <li><strong>4.</strong> Es obligación del representante mantener a su representado enfermo (a) en casa cuando no pueda participar en las actividades regulares de la institución.</li>
+                        <li><strong>5.</strong> No serán laborales los días feriados y decretados por el gobierno regional y nacional en su debido momento.</li>
+                        <li><strong>6.</strong> En caso de que el (la) estudiante cuente con transporte escolar, se deberá consignar a la institución los siguientes recaudos: Constancia o documento expedido por el representante del (la) estudiante que identifique y autorice a la persona que preste este servicio, a demás de la fotocopia de la Cédula de identidad.</li>
+                        <li><strong>7. El retraso en el pago de (2) mensualidades traerá como consecuencia una mora del 5% del monto total y de NO cancelar la misma se realizaran gestiones para reubicar a su representado en una institución pública nacional... Recordándole que usted eligió un colegio privado para la educación de su representado el cual debe ser cancelado los (5) cinco primeros dias de cada mes.</strong></li>
+                    </ul>
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="acepto_normas" name="acepto_normas" required>
+                        <label for="acepto_normas">He leído y acepto cumplir con las normas de compromiso de la institución.</label>
+                    </div>
+                </div>
+            </fieldset>
+
+            <div style="text-align: center;">
+                <button type="submit" class="btn">Enviar Inscripción</button>
+            </div>
+        </form>
+    </div>
+</section>
+
     <section id="contacto" class="container section-padding">
         <h2 class="section-title">Contáctanos</h2>
         <div class="contacto-flex">
@@ -198,6 +328,54 @@
             <p>&copy; 2025 Unidad Educativa "Pablo Neruda". Todos los derechos reservados.</p>
         </div>
     </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<script>
+    const { jsPDF } = window.jspdf;
+
+document.querySelector('.form-inscripcion').addEventListener('submit', function (e) {
+    e.preventDefault(); // Evita que la página se recargue
+
+    const form = e.target;
+    const formData = new FormData(form);
+    
+    // 1. Crear el documento PDF
+    const doc = new jsPDF();
+    let y = 20; // Posición vertical inicial
+
+    doc.setFontSize(18);
+    doc.text("Ficha de Inscripción - U.E. Pablo Neruda", 20, y);
+    y += 15;
+
+    doc.setFontSize(12);
+    // Recorrer los datos del formulario y añadirlos al PDF
+    formData.forEach((value, key) => {
+        if (y > 270) { // Si llega al final de la hoja, crea una nueva
+            doc.addPage();
+            y = 20;
+        }
+        // Limpiar nombres de campos para el PDF
+        const label = key.replace(/_/g, ' ').toUpperCase();
+        doc.text(`${label}: ${value}`, 20, y);
+        y += 8;
+    });
+
+    // 2. Guardar el PDF localmente (Opcional, para que el usuario lo tenga)
+    const nombreArchivo = `Inscripcion_${formData.get('est_nombre')}.pdf`;
+    doc.save(nombreArchivo);
+
+    // 3. Preparar el envío a WhatsApp
+    const telefono = "04248367680";
+    const mensaje = `Hola, envío el formulario de inscripción de: ${formData.get('est_nombre')}. Acabo de descargar el PDF generado.`;
+    
+    // El usuario deberá adjuntar el archivo que se acaba de descargar en el chat que se abrirá.
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=${telefono}&text=${encodeURIComponent(mensaje)}`;
+    
+    window.open(whatsappUrl, '_blank');
+});
+</script>
 
 </body>
 </html>

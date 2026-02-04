@@ -365,6 +365,120 @@ nav ul li a.active {
     font-size: 0.95em;
 }
 
+/* Estilos para el Formulario de Inscripción */
+.form-inscripcion {
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+fieldset {
+    border: 2px solid var(--bg-dark);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+legend {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: var(--primary-color);
+    padding: 0 10px;
+    font-size: 1.2em;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.flex-container-form {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.form-column {
+    flex: 1;
+    min-width: 250px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 0.9em;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.form-group input, 
+.form-group select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.form-group input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.normas-box {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 0.95em;
+}
+
+.normas-box ul {
+    list-style: none;
+    padding: 0;
+}
+
+.normas-box li {
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.normas-box li::before {
+    content: '•';
+    color: var(--secondary-color);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+.checkbox-group {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    border-top: 1px solid #ddd;
+    padding-top: 15px;
+}
+
+.checkbox-group input {
+    width: 20px;
+    height: 20px;
+}
+
+/* Ajustes para móviles */
+@media (max-width: 768px) {
+    .flex-container-form {
+        flex-direction: column;
+    }
+}
+
 /* Contacto */
 .contacto-flex {
     display: flex;
