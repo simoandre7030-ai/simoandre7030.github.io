@@ -335,45 +335,58 @@
 <script>
     const { jsPDF } = window.jspdf;
 
-document.querySelector('.form-inscripcion').addEventListener('submit', function (e) {
-    e.preventDefault(); // Evita que la página se recargue
+document.querySelector('.form-inscripcion').addEventListener('submit', async function (e) {
+    e.preventDefault();
 
-    const form = e.target;
-    const formData = new FormData(form);
-    
-    // 1. Crear el documento PDF
-    const doc = new jsPDF();
-    let y = 20; // Posición vertical inicial
+    // Mostrar un mensaje de carga (Opcional pero recomendado)
+    const boton = e.submitter;
+    const textoOriginal = boton.innerText;
+    boton.innerText = "Generando PDF...";
+    boton.disabled = true;
 
-    doc.setFontSize(18);
-    doc.text("Ficha de Inscripción - U.E. Pablo Neruda", 20, y);
-    y += 15;
+    const formulario = document.querySelector('.form-inscripcion');
 
-    doc.setFontSize(12);
-    // Recorrer los datos del formulario y añadirlos al PDF
-    formData.forEach((value, key) => {
-        if (y > 270) { // Si llega al final de la hoja, crea una nueva
-            doc.addPage();
-            y = 20;
-        }
-        // Limpiar nombres de campos para el PDF
-        const label = key.replace(/_/g, ' ').toUpperCase();
-        doc.text(`${label}: ${value}`, 20, y);
-        y += 8;
-    });
+    try {
+        // Usamos html2canvas para capturar el diseño CSS exacto
+        const canvas = await html2canvas(formulario, {
+            scale: 2, // Mayor calidad
+            useCORS: true,
+            logging: false,
+            backgroundColor: "#ffffff"
+        });
 
-    // 2. Guardar el PDF localmente (Opcional, para que el usuario lo tenga)
-    const nombreArchivo = `Inscripcion_${formData.get('est_nombre')}.pdf`;
-    doc.save(nombreArchivo);
+        const imgData = canvas.toDataURL('image/png');
+        
+        // Configuración del PDF (A4)
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        const imgProps = pdf.getImageProperties(imgData);
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
 
-    // 3. Preparar el envío a WhatsApp
-    const telefono = "04248367680";
-    const mensaje = `Hola, envío el formulario de inscripción de: ${formData.get('est_nombre')}. Acabo de descargar el PDF generado.`;
-    
-    // El usuario deberá adjuntar el archivo que se acaba de descargar en el chat que se abrirá.
-    const whatsappUrl = `https://api.whatsapp.com/send?phone=${telefono}&text=${encodeURIComponent(mensaje)}`;
-    
-    window.open(whatsappUrl, '_blank');
+        // Añadir la imagen del formulario al PDF
+        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+
+        // Obtener nombre del estudiante para el archivo
+        const nombreEstudiante = document.getElementById('est_nombre').value || "Inscripcion";
+        const nombreArchivo = `Inscripcion_PabloNeruda_${nombreEstudiante.replace(/\s+/g, '_')}.pdf`;
+        
+        // Descargar el archivo
+        pdf.save(nombreArchivo);
+
+        // Abrir WhatsApp con los datos de contacto de la institución
+        const telefono = "584248367680";
+        const mensaje = encodeURIComponent(`Hola, envío la planilla de inscripción de ${nombreEstudiante}. El PDF se ha generado con el diseño oficial.`);
+        const whatsappUrl = `https://api.whatsapp.com/send?phone=${telefono}&text=${mensaje}`;
+
+        window.open(whatsappUrl, '_blank');
+
+    } catch (error) {
+        console.error("Error al generar el PDF:", error);
+        alert("Hubo un error al generar el documento. Por favor, inténtelo de nuevo.");
+    } finally {
+        boton.innerText = textoOriginal;
+        boton.disabled = false;
+    }
 });
 </script>
 
