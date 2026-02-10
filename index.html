@@ -170,6 +170,9 @@
                 <p class="nota-tarifas">* Recodándole que si usted elige nuetros servicios privados para la educación de su representado el cual debe ser cancelado los (5) primeros días de cada mes.</p>
                 <p>Para más detalles sobre el proceso o para agendar una visita, por favor, <a href="#contacto">contáctanos</a>.</p>
             </div>
+            <div style="text-align: center; margin-top: 30px;">
+    <button id="btn-desplegar-formulario" class="btn">¿Quieres realizar tu Pre-Inscripción?</button>
+</div>
         </div>
     </section>
 
@@ -303,25 +306,24 @@
     </div>
 </section>
 
-    <section id="contacto" class="container section-padding">
+     <section id="contacto" class="container section-padding">
         <h2 class="section-title">Contáctanos</h2>
         <div class="contacto-flex">
             <div class="contacto-info">
-                <p>¡Nos encantaría escucharte! Si tienes preguntas, deseas más información o quieres programar una visita, no dudes en contactarnos.</p>
-                <ul>
-                    <li><strong>Dirección:</strong> Boyacá II Sector II Calle 3, Barcelona, Anzoátegui, Venezuela.</li>
-                    <li><strong>Teléfono:</strong> +58 424 8367680</li>
-                    <li><strong>Correo Electrónico:</strong> <a href="mailto:pablonerudaanz@gmail.com">pablonerudaanz@gmail.com</a></li>
-                    <li><strong>Horario de Oficina:</strong> Lunes a Viernes, 8:00 AM - 12:00 PM</li>
-                </ul>
-                <div class="social-links">
-                    <a href="#" target="_blank"><img src="images/facebook.png" alt="Facebook"></a>
-                    <a href="#" target="_blank"><img src="images/instagram.png" alt="Instagram"></a>
-                    <a href="#" target="_blank"><img src="images/WhatsApp.png" alt="WhatsApp"></a>
-                </div>
-            </div>
+    <p>¡Nos encantaría escucharte! Si tienes preguntas, deseas más información o quieres programar una visita, no dudes en contactarnos.</p>
+    <ul>
+        <li>
+            <strong>Dirección:</strong> 
+            <a href="https://www.google.com/maps/place/10%C2%B009'06.9%22N+64%C2%B040'24.7%22W/@10.1519167,-64.6735278,750m/data=!3m2!1e3!4b1!4m4!3m3!8m2!3d10.1519167!4d-64.6735278!17m2!4m1!1e3!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDIwOC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="map-link">
+                Boyacá II Sector II Calle 3, Barcelona, Anzoátegui, Venezuela. 📍
+            </a>
+        </li>
+        <li><strong>Teléfono:</strong> +58 424 8367680</li>
+        <li><strong>Correo Electrónico:</strong> <a href="mailto:pablonerudaanz@gmail.com">pablonerudaanz@gmail.com</a></li>
+        <li><strong>Horario de Oficina:</strong> Lunes a Viernes, 8:00 AM - 12:00 PM</li>
+    </ul>
         </div>
-    </section>
+</div>
 
     <footer>
         <div class="container">
@@ -333,6 +335,19 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <script>
+    document.getElementById('btn-desplegar-formulario').addEventListener('click', function() {
+    const seccionFormulario = document.getElementById('inscripcion');
+    
+    // Mostramos la sección agregando la clase CSS
+    seccionFormulario.classList.add('visible');
+    
+    // Desplazamiento suave (scroll) hacia el formulario
+    seccionFormulario.scrollIntoView({ behavior: 'smooth' });
+    
+    // Opcional: Ocultar el botón después de pulsarlo para limpiar la vista
+    this.style.display = 'none';
+});
+
     const { jsPDF } = window.jspdf;
 
 document.querySelector('.form-inscripcion').addEventListener('submit', async function (e) {
