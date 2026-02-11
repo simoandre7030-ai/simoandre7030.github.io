@@ -348,61 +348,104 @@
     this.style.display = 'none';
 });
 
+    // Lógica de despliegue del formulario
+    document.getElementById('btn-desplegar-formulario').addEventListener('click', function() {
+        const seccionFormulario = document.getElementById('inscripcion');
+        seccionFormulario.classList.add('visible');
+        seccionFormulario.style.display = 'block'; // Asegura que sea visible
+        setTimeout(() => { seccionFormulario.style.opacity = '1'; }, 10);
+        seccionFormulario.scrollIntoView({ behavior: 'smooth' });
+        this.style.display = 'none';
+    });
+
+    // Generación de PDF y envío a WhatsApp
     const { jsPDF } = window.jspdf;
 
-document.querySelector('.form-inscripcion').addEventListener('submit', async function (e) {
-    e.preventDefault();
+    document.querySelector('.form-inscripcion').addEventListener('submit', async function (e) {
+        e.preventDefault();
 
-    // Mostrar un mensaje de carga (Opcional pero recomendado)
-    const boton = e.submitter;
-    const textoOriginal = boton.innerText;
-    boton.innerText = "Generando PDF...";
-    boton.disabled = true;
+        const boton = e.submitter;
+        const textoOriginal = boton.innerText;
+        boton.innerText = "Procesando...";
+        boton.disabled = true;
 
-    const formulario = document.querySelector('.form-inscripcion');
+        // Obtener datos del formulario
+        const formData = new FormData(this);
+        const data = Object.fromEntries(formData.entries());
 
-    try {
-        // Usamos html2canvas para capturar el diseño CSS exacto
-        const canvas = await html2canvas(formulario, {
-            scale: 2, // Mayor calidad
-            useCORS: true,
-            logging: false,
-            backgroundColor: "#ffffff"
-        });
+        try {
+            // Crear PDF
+            const doc = new jsPDF();
+            const margin = 20;
+            let y = 20;
 
-        const imgData = canvas.toDataURL('image/png');
-        
-        // Configuración del PDF (A4)
-        const pdf = new jsPDF('p', 'mm', 'a4');
-        const imgProps = pdf.getImageProperties(imgData);
-        const pdfWidth = pdf.internal.pageSize.getWidth();
-        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+            // Encabezado
+            doc.setFontSize(18);
+            doc.setTextColor(37, 141, 211); // Color primario #258dd3
+            doc.text('U.E. PABLO NERUDA - PLANILLA DE PRE-INSCRIPCIÓN', margin, y);
+            
+            y += 15;
+            doc.setFontSize(12);
+            doc.setTextColor(0, 0, 0);
+            doc.setFont("helvetica", "bold");
+            doc.text('DATOS DEL ESTUDIANTE', margin, y);
+            
+            y += 7;
+            doc.setFont("helvetica", "normal");
+            doc.text(`Nombre: ${data.est_nombre}`, margin, y);
+            doc.text(`Cédula/ID: ${data.est_id}`, margin + 100, y);
+            y += 7;
+            doc.text(`Fecha Nac: ${data.est_fecha_nac}`, margin, y);
+            doc.text(`Edad: ${data.est_edad} años`, margin + 100, y);
+            
+            y += 15;
+            doc.setFont("helvetica", "bold");
+            doc.text('DATOS DEL REPRESENTANTE', margin, y);
+            y += 7;
+            doc.setFont("helvetica", "normal");
+            doc.text(`Nombre: ${data.rep_nombre}`, margin, y);
+            doc.text(`Cédula: ${data.rep_cedula}`, margin + 100, y);
+            y += 7;
+            doc.text(`Parentesco: ${data.rep_vinculo}`, margin, y);
+            doc.text(`Teléfono: ${data.rep_tel}`, margin + 100, y);
+            
+            y += 15;
+            doc.setFont("helvetica", "bold");
+            doc.text('COMPROMISO ADQUIRIDO', margin, y);
+            y += 7;
+            doc.setFontSize(10);
+            const compromiso = "El representante acepta las normas internas, incluyendo el pago los primeros 5 días del mes y el cumplimiento del uniforme escolar.";
+            const splitText = doc.splitTextToSize(compromiso, 170);
+            doc.text(splitText, margin, y);
 
-        // Añadir la imagen del formulario al PDF
-        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+            // Guardar PDF
+            const nombreArchivo = `Inscripcion_${data.est_nombre.replace(/\s+/g, '_')}.pdf`;
+            doc.save(nombreArchivo);
 
-        // Obtener nombre del estudiante para el archivo
-        const nombreEstudiante = document.getElementById('est_nombre').value || "Inscripcion";
-        const nombreArchivo = `Inscripcion_PabloNeruda_${nombreEstudiante.replace(/\s+/g, '_')}.pdf`;
-        
-        // Descargar el archivo
-        pdf.save(nombreArchivo);
+            // Redirección a WhatsApp
+            const nroTelefono = "584248367680";
+            const mensajeWa = `*NUEVA PRE-INSCRIPCIÓN*%0A%0A` +
+                              `*Estudiante:* ${data.est_nombre}%0A` +
+                              `*Representante:* ${data.rep_nombre}%0A` +
+                              `*Teléfono:* ${data.rep_tel}%0A%0A` +
+                              `_He generado el PDF con todos los detalles. ¿A qué correo o medio puedo adjuntarlo?_`;
 
-        // Abrir WhatsApp con los datos de contacto de la institución
-        const telefono = "584248367680";
-        const mensaje = encodeURIComponent(`Hola, envío la planilla de inscripción de ${nombreEstudiante}. El PDF se ha generado con el diseño oficial.`);
-        const whatsappUrl = `https://api.whatsapp.com/send?phone=${telefono}&text=${mensaje}`;
+            const whatsappUrl = `https://wa.me/${nroTelefono}?text=${mensajeWa}`;
+            
+            // Pequeña pausa para que el usuario vea la descarga del PDF
+            setTimeout(() => {
+                window.open(whatsappUrl, '_blank');
+                boton.innerText = textoOriginal;
+                boton.disabled = false;
+            }, 1000);
 
-        window.open(whatsappUrl, '_blank');
-
-    } catch (error) {
-        console.error("Error al generar el PDF:", error);
-        alert("Hubo un error al generar el documento. Por favor, inténtelo de nuevo.");
-    } finally {
-        boton.innerText = textoOriginal;
-        boton.disabled = false;
-    }
-});
+        } catch (error) {
+            console.error("Error:", error);
+            alert("Error al procesar la inscripción.");
+            boton.disabled = false;
+            boton.innerText = textoOriginal;
+        }
+    });
 </script>
 
 </body>
